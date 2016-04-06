@@ -1,0 +1,32 @@
+{
+  "name": "themccallister/oauth2-azure-adal",
+  "description": "Azure ADAL OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
+  "keywords": [
+    "oauth",
+    "oauth2",
+    "azure",
+    "adal",
+    "active directory"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jason McCallister",
+      "email": "themccallister@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "league/oauth2-client": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "McCallister\\OAuth2\\Client\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "McCallister\\OAuth2\\Client\\Test\\": "test/src/"
+    }
+  }
+}
