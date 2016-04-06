@@ -25,8 +25,7 @@ class Azure extends AbstractProvider
      * Get the authorization URL.
      * @return string
      */
-    public function getBaseAuthorizationUrl()
-    {
+    public function getBaseAuthorizationUrl(){
         return $this->baseUrl . $this->authorizationUri;
     }
 
@@ -37,7 +36,7 @@ class Azure extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return $this->baseUrl . $this->tokenUri;
+        return $this->baseUrl .$this->tokenUri;
     }
 
     /**
@@ -67,7 +66,7 @@ class Azure extends AbstractProvider
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
-       if (isset($data['odata.error']) || isset($data['error'])) {
+        if (isset($data['odata.error']) || isset($data['error'])) {
             if (isset($data['odata.error']['message']['value'])) {
                 $message = $data['odata.error']['message']['value'];
             } elseif (isset($data['error']['message'])) {
