@@ -12,7 +12,14 @@ class Azure extends AbstractProvider
     public $baseUrl = 'https://login.microsoftonline.com/common';
     public $authorizationUri = '/oauth2/authorize';
     public $tokenUri = '/oauth2/token';
-    public $defaultScopes = [];
+    public $defaultScopes = [
+        'user_impersonation'
+    ];
+    public $defaultHeaders = [
+        'Accept: application/json',
+        'OData-MaxVersion: 4.0',
+        'OData-Version: 4.0',
+    ];
 
     /**
      * Get the authorization URL.
@@ -60,23 +67,21 @@ class Azure extends AbstractProvider
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
-        //        die(var_dump($data));
-//
-//        if (isset($data['odata.error']) || isset($data['error'])) {
-//            if (isset($data['odata.error']['message']['value'])) {
-//                $message = $data['odata.error']['message']['value'];
-//            } elseif (isset($data['error']['message'])) {
-//                $message = $data['error']['message'];
-//            } else {
-//                $message = $response->getReasonPhrase();
-//            }
-//
-//            throw new IdentityProviderException(
-//                $message,
-//                $response->getStatusCode(),
-//                $response
-//            );
-//        }
+       if (isset($data['odata.error']) || isset($data['error'])) {
+            if (isset($data['odata.error']['message']['value'])) {
+                $message = $data['odata.error']['message']['value'];
+            } elseif (isset($data['error']['message'])) {
+                $message = $data['error']['message'];
+            } else {
+                $message = $response->getReasonPhrase();
+            }
+
+            throw new IdentityProviderException(
+                $message,
+                $response->getStatusCode(),
+                $response
+            );
+        }
     }
 
     /**
