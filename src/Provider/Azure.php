@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class Azure extends AbstractProvider
 {
-    public $baseUrl = 'https://login.microsoftwindows.com/common';
+    public $baseUrl = 'https://login.microsoftonline.com/common';
     public $authorizationUri = '/oauth2/authorize';
     public $tokenUri = '/oauth2/token';
     public $defaultScopes = [];
@@ -60,7 +60,7 @@ class Azure extends AbstractProvider
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
-//        die(var_dump($data));
+        //        die(var_dump($data));
 //
 //        if (isset($data['odata.error']) || isset($data['error'])) {
 //            if (isset($data['odata.error']['message']['value'])) {
@@ -89,5 +89,4 @@ class Azure extends AbstractProvider
     {
         return new AzureResourceOwner($response);
     }
-
 }
